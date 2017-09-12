@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import '@material/card/dist/mdc.card.css';
+import '@material/button/dist/mdc.button.css';
 import './ProductCard.css';
 
 class ProductList extends Component {
@@ -20,7 +22,7 @@ class ProductList extends Component {
     render() {
         let productElements = this.state.products
             .map(p => <ProductCard key={p.id} product={p} />);
-        return <div className="ProductList">{productElements}</div>;
+        return <div className="ProductList" style={{display: 'flex'}}>{productElements}</div>;
     }
 }
 
@@ -28,14 +30,17 @@ class ProductCard extends Component {
 
     render() {
         let product = this.props.product;
-        return <div className="card">
-            <img className="card-img-top" src={product.imageURL}  />
-            <div className="card-body">
-                <h4 className="card-title">{product.name}</h4>
-                <p>${product.price}</p>
-                <a href="#" className="btn btn-primary">Add to Cart</a>
-            </div>
-        </div>;
+        return <div className="mdc-card ProductCard">
+            <section className="mdc-card__media">
+                <img className="mdc-card__media-item mdc-card__media-item--2x" src={product.imageURL}  />
+            </section>
+            <section className="mdc-card__primary">
+                <h1 className="mdc-card__title mdc-card__title--large">{product.name} ${product.price}</h1>
+            </section>
+            <section className="mdc-card__actions">
+                <button className="mdc-button mdc-button--stroked mdc-button--primary mdc-card__action">Add to Cart</button>
+            </section>
+        </div>
     }
 }
 

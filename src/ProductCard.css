@@ -1,31 +1,3 @@
 .ProductCard {
-    display: grid;
-    grid-template-columns: 218px auto;
-    grid-template-rows: auto auto;
-    justify-items: stretch;
-}
-
-.ProductCard img {
-    grid-column-start: 1;
-    grid-column-end: 1;
-    grid-row-start: 1;
-    grid-row-end: 2;
-}
-
-.ProductCard .name {
-    align-self: start;
-    grid-column-start: 2;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 1;
-    font-weight: bolder;
-    font-size: larger;
-}
-
-.ProductCard .buy {
-    align-self: start;
-    grid-column-start: 2;
-    grid-column-end: 2;
-    grid-row-start: 2;
-    grid-row-end: 2;
+    width: 25%;
 }
