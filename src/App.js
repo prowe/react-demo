@@ -1,24 +1,31 @@
 import React, { Component } from 'react';
-import ProductList from './ProductList'
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import ProductList from './ProductList';
+import ShoppingCart from './ShoppingCart';
 import '@material/toolbar/dist/mdc.toolbar.css';
 import '@material/typography/dist/mdc.typography.css';
 
 export default class App extends Component {
   render() {
     return (
-      <div>
-        <header className="mdc-toolbar">
-          <div className="mdc-toolbar__row">
-            <section className="mdc-toolbar__section">
-              <span className="mdc-toolbar__title">Fidget Spinners 1 2 3</span>
-            </section>
-            <section className="mdc-toolbar__section">
-              <span>My Cart</span>
-            </section>
-          </div>
-        </header>
-        <ProductList />
-      </div>
+      <BrowserRouter>
+        <div>
+          <header className="mdc-toolbar">
+            <div className="mdc-toolbar__row">
+              <section className="mdc-toolbar__section">
+                <span className="mdc-toolbar__title">Fidget Spinners 1 2 3</span>
+              </section>
+              <section className="mdc-toolbar__section">
+                <Link to="/cart">My Cart</Link>
+              </section>
+            </div>
+          </header>
+          <Switch>
+            <Route path="/cart" component={ShoppingCart} />
+            <Route path="/" component={ProductList} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }
