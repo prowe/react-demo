@@ -5,6 +5,8 @@
   "dependencies": {
     "@material/button": "^0.6.0",
     "@material/card": "^0.2.8",
+    "@material/toolbar": "^0.4.8",
+    "@material/typography": "^0.3.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-scripts": "1.0.13"

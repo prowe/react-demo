@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ProductList from './ProductList'
+import '@material/toolbar/dist/mdc.toolbar.css';
+import '@material/typography/dist/mdc.typography.css';
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <header className="mdc-toolbar">
+          <div className="mdc-toolbar__row">
+            <section className="mdc-toolbar__section">
+              <span className="mdc-toolbar__title">Fidget Spinners 1 2 3</span>
+            </section>
+            <section className="mdc-toolbar__section">
+              <span>My Cart</span>
+            </section>
+          </div>
+        </header>
+        <ProductList />
       </div>
     );
   }
 }
-
-export default App;
