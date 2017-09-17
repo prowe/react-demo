@@ -5,6 +5,7 @@
   "dependencies": {
     "@material/button": "^0.6.0",
     "@material/card": "^0.2.8",
+    "@material/list": "^0.2.18",
     "@material/toolbar": "^0.4.8",
     "@material/typography": "^0.3.0",
     "react": "^15.6.1",
