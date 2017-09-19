@@ -16,7 +16,9 @@ export default class App extends Component {
                 <span className="mdc-toolbar__title">Fidget Spinners 1 2 3</span>
               </section>
               <section className="mdc-toolbar__section">
-                <Link to="/cart">My Cart</Link>
+                <Link to="/cart"  >
+                  <span className="material-icons">shopping_cart</span>
+                </Link>
               </section>
             </div>
           </header>

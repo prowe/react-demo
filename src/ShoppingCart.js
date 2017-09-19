@@ -28,7 +28,7 @@ export default class ShoppingCart extends Component {
 
     render() {
         let cart = this.state.cart;
-        return <ul className="mdc-list mdc-list--two-line mdc-list--avatar-list">
+        return <ul className="mdc-list mdc-list--avatar-list">
             {cart.products.map(this.createListItem)}
         </ul>;
     }
@@ -38,8 +38,8 @@ export default class ShoppingCart extends Component {
             <img src={item.product.imageURL} className="mdc-list-item__start-detail" />
             <span className="mdc-list-item__text">
                 {item.product.name}
-                <span className="mdc-list-item__text__secondary">Secondary text</span>
             </span>
+            <a className="mdc-list-item__end-detail material-icons" href="#" >remove_shopping_cart</a>
         </li>;
     }
 }
