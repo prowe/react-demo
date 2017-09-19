@@ -1,0 +1,5 @@
+.ProductList {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ProductCard from './ProductCard';
+import './ProductList.css';
 
 export default class ProductList extends Component {
 
@@ -19,6 +20,6 @@ export default class ProductList extends Component {
     render() {
         let productElements = this.state.products
             .map(p => <ProductCard key={p.id} product={p} />);
-        return <div className="ProductList" style={{display: 'flex'}}>{productElements}</div>;
+        return <div className="ProductList">{productElements}</div>;
     }
 }
