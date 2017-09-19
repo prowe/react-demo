@@ -17,7 +17,7 @@ export default class App extends Component {
               </section>
               <section className="mdc-toolbar__section">
                 <Link to="/cart"  >
-                  <span className="material-icons">shopping_cart</span>
+                  <span className="material-icons md-dark">shopping_cart</span>
                 </Link>
               </section>
             </div>

@@ -7,7 +7,7 @@ export default class ShoppingCart extends Component {
         super(props);
         this.state = {
             cart: {
-                products: []
+                lineItems: []
             }
         };
     }
@@ -15,26 +15,26 @@ export default class ShoppingCart extends Component {
     componentDidMount() {
         fetch('http://localhost:8080/shopping-cart')
             .then(res => res.json())
-            .then(cart => Promise.all(cart.products.map(this.loadAndPopulateProduct))
+            .then(cart => Promise.all(cart.lineItems.map(this.loadAndPopulateProduct))
                 .then(() => this.setState({cart: cart}))
             );
     }
 
-    loadAndPopulateProduct(cartProduct) {
-        return fetch(`http://localhost:8080/products/${cartProduct.productId}`)
+    loadAndPopulateProduct(lineItem) {
+        return fetch(`http://localhost:8080/products/${lineItem.productId}`)
             .then(res => res.json())
-            .then(product => cartProduct.product = product);
+            .then(product => lineItem.product = product);
     }
 
     render() {
         let cart = this.state.cart;
         return <ul className="mdc-list mdc-list--avatar-list">
-            {cart.products.map(this.createListItem)}
+            {cart.lineItems.map(this.createListItem)}
         </ul>;
     }
 
     createListItem(item) {
-        return <li className="mdc-list-item" key={item.productId} >
+        return <li className="mdc-list-item" key={item.lineItemId} >
             <img src={item.product.imageURL} className="mdc-list-item__start-detail" />
             <span className="mdc-list-item__text">
                 {item.product.name}
