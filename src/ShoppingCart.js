@@ -10,10 +10,12 @@ export default class ShoppingCart extends Component {
                 lineItems: []
             }
         };
+
+        this.createListItem = this.createListItem.bind(this);
     }
     
     componentDidMount() {
-        fetch('http://localhost:8080/shopping-cart')
+        fetch(`http://localhost:8080/shopping-carts/${window.shoppingCartId}`)
             .then(res => res.json())
             .then(cart => Promise.all(cart.lineItems.map(this.loadAndPopulateProduct))
                 .then(() => this.setState({cart: cart}))
@@ -39,7 +41,22 @@ export default class ShoppingCart extends Component {
             <span className="mdc-list-item__text">
                 {item.product.name}
             </span>
-            <a className="mdc-list-item__end-detail material-icons" href="#" >remove_shopping_cart</a>
+            <a className="mdc-list-item__end-detail material-icons" 
+                href="#" 
+                onClick={e => this.removeLineItemFromCart(e, item)}>remove_shopping_cart</a>
         </li>;
+    }
+
+    removeLineItemFromCart(e, lineItem) {
+        e.preventDefault();
+
+        fetch(`http://localhost:8080/shopping-carts/${window.shoppingCartId}/line-items/${lineItem.lineItemId}`, {
+                method: "DELETE"
+        })
+        .then(() => {
+            let cart = this.state.cart;
+            cart.lineItems = cart.lineItems.filter(li => li != lineItem);
+            this.setState({cart: cart});
+        });
     }
 }
