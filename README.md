@@ -125,3 +125,27 @@ addItemProductToCart = (e) => {
     });
 }
 ```
+
+## Routing
+
+### App.js
+```javascript
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+
+<BrowserRouter>
+    ...
+    <Link to="/cart">
+        <span className="material-icons md-dark">shopping_cart</span>
+    </Link>
+
+    ...
+
+    <Switch>
+        <Route path="/cart" component={ShoppingCart} />
+        <Route path="/" component={ProductList} />
+    </Switch>
+</BrowserRouter>
+
+```
+
+ShoppingCart.js

@@ -26,42 +26,49 @@ export default class ShoppingCart extends Component {
             .then(product => lineItem.product = product);
     }
 
+    lineItemRemovedFromCart = (lineItem) => {
+        let oldCart = this.state.cart;
+        let cart = {
+            ...oldCart,
+            lineItems: oldCart.lineItems.filter(li => li !== lineItem)
+        };
+        this.setState({cart});
+    }
+
     render() {
         let lineItemElements = this.state.cart.lineItems
-            .map(li => <CartItem lineItem={li} key={li.lineItemId}/>);
+            .map(li => <CartItem lineItem={li} key={li.lineItemId} lineItemRemovedFromCart={this.lineItemRemovedFromCart} />);
 
         return <ul className="mdc-list mdc-list--avatar-list">{lineItemElements}</ul>;
     }
 }
 
 class CartItem extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            lineItem: props.lineItem
-        };
-    }
 
     removeFromCart = (e) => {
         e.preventDefault();
         
-        let lineItem = this.state.lineItem;
+        let lineItem = this.props.lineItem;
         fetch(`http://localhost:8080/shopping-carts/123/line-items/${lineItem.lineItemId}`, {
             method: "DELETE"
         })
-        .then(() => this.setState({lineItem: null}));
+        .then(() => {
+            let cb = this.props.lineItemRemovedFromCart;
+            if(cb) {
+                cb(lineItem);
+            }
+        });
     }
 
     render() {
-        let item = this.state.lineItem;
-        return !item ? null : 
-            <li className="mdc-list-item">
-                <img src={item.product.imageURL} className="mdc-list-item__start-detail" />
-                <span className="mdc-list-item__text">
-                    {item.product.name}
-                </span>
-                <a className="mdc-list-item__end-detail material-icons"  
-                    onClick={this.removeFromCart}>remove_shopping_cart</a>
-            </li>;
+        let item = this.props.lineItem;
+        return <li className="mdc-list-item">
+            <img src={item.product.imageURL} className="mdc-list-item__start-detail" alt="product" />
+            <span className="mdc-list-item__text">
+                {item.product.name} ${item.product.price} x {item.quantity}
+            </span>
+            <a className="mdc-list-item__end-detail material-icons"  
+                onClick={this.removeFromCart}>remove_shopping_cart</a>
+        </li>;
     }
 }
