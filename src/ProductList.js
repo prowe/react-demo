@@ -35,7 +35,7 @@ class ProductCard extends Component {
         let lineItem = {
             productId: this.props.product.id
         };
-        fetch(`http://localhost:8080/shopping-carts/123/line-items`, {
+        fetch(`http://localhost:5000/shopping-carts/1/line-items`, {
             method: 'POST',
             headers: new Headers({
                 'Content-Type': 'application/json'

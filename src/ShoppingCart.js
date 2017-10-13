@@ -13,7 +13,7 @@ export default class ShoppingCart extends Component {
     }
     
     componentDidMount() {
-        fetch(`http://localhost:8080/shopping-carts/123`)
+        fetch(`http://localhost:5000/shopping-carts/1`)
             .then(res => res.json())
             .then(cart => Promise.all(cart.lineItems.map(this.loadAndPopulateProduct))
                 .then(() => this.setState({cart: cart}))
