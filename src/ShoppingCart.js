@@ -37,7 +37,7 @@ export default class ShoppingCart extends Component {
 
     render() {
         let lineItemElements = this.state.cart.lineItems
-            .map(li => <CartItem lineItem={li} key={li.lineItemId} lineItemRemovedFromCart={this.lineItemRemovedFromCart} />);
+            .map(li => <CartItem lineItem={li} key={li.id} lineItemRemovedFromCart={this.lineItemRemovedFromCart} />);
 
         return <ul className="mdc-list mdc-list--avatar-list">{lineItemElements}</ul>;
     }
@@ -49,7 +49,7 @@ class CartItem extends Component {
         e.preventDefault();
         
         let lineItem = this.props.lineItem;
-        fetch(`http://localhost:8080/shopping-carts/123/line-items/${lineItem.lineItemId}`, {
+        fetch(`http://localhost:5000/shopping-carts/1/line-items/${lineItem.id}`, {
             method: "DELETE"
         })
         .then(() => {
