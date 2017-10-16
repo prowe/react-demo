@@ -180,6 +180,18 @@ export default class ShoppingCart extends Component {
             .then(res => res.json())
             .then(product => lineItem.product = product);
     }
+    
+    // OR:
+    componentDidMount() {
+        fetch('http://localhost:5000/shopping-carts/1')
+            .then(res => res.json())
+            .then(cart => Promise.all(cart.lineItems.map(li => 
+                fetch(`http://localhost:8080/products/${li.productId}`)
+                    .then(res => res.json())
+                    .then(product => li.product = product)))
+                .then(() => this.setState({cart}))
+            );
+    }
 
     lineItemRemovedFromCart = (lineItem) => {
         let oldCart = this.state.cart;
